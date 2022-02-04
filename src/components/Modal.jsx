@@ -55,15 +55,16 @@ const Modal = () => {
 
   return (
     <Container>
-      <h1>Modal</h1>
       {!isModalOpen &&
-        <ModalBtn onClick={handleOpenModal}>Open Modal</ModalBtn>
+        <>
+          <h1>Modal</h1>
+          <ModalBtn onClick={handleOpenModal}>Open Modal</ModalBtn>
+        </>
       }
 
-      
-        <SModal active={isModalOpen}>
-          <ModalMsg>
-           <button
+      <SModal active={isModalOpen}>
+        <ModalMsg>
+          <button
             style={{
               backgroundColor: 'transparent',
               border: 0,
@@ -72,10 +73,9 @@ const Modal = () => {
             }}
             onClick={handleCloseModal}
           >x</button>
-            <h2>HELLO CODESTATES!</h2>
-          </ModalMsg>
-        </SModal>
-      
+          <h2>HELLO CODESTATES!</h2>
+        </ModalMsg>
+      </SModal>
     </Container>
   );
 };
