@@ -7,56 +7,72 @@ const Container = styled.div`
   height: 350px;
   position: relative;
   border-radius: 10px;
-  border: 3px solid #e9ecef;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 10px;  
   margin-bottom: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 2px 2px 20px lightgray;
+`;
+const Title = styled.h1`
+  margin: 0;
+  font-size: 1.2rem;
+  margin-right: 10px;
+`;
+const Top = styled.div`
+  width: 100%;
+  display: flex;
+  margin-bottom: 50px;
+  align-items: center;
 `;
 const Tabs = styled.div`
+  width: 100%;
   display: flex;
-  `;
+`;
 const STab = styled.div`
-  width: 200px;
-  padding: 10px;
+  font-weight: bold;
+  &:first-child {
+    width: 5%;
+    cursor: default;
+    color: black;
+  }
+  width: 30%;
+  padding: 15px;
   cursor: pointer;
   color: ${props => props.active ? 'white' : 'gray'};
   background-color: ${props => props.active ? '#6741d9' : 'lightgray'};
   transition: all 0.2s ease-in-out;
+  `;
+const Text = styled.p`
+  font-size: 1.2rem;
+  margin-top: 80px;
 `;
 
 const Tab = () => {
-  const [tabs, setTabs] = useState('ONE');
+  const [tab, setTab] = useState('ONE');
 
   return (
     <Container>
-      <h1>Tab</h1>
+      <Top>
+        <Title>Tab</Title>
+        <Tabs>
+          <STab>:)</STab>
+          {['ONE', 'TWO', 'THREE'].map((item, i) => (
+            <STab
+              key={item}  
+              active={tab === item} 
+              onClick={() => setTab(item)}
+            >Tab{i+1}</STab>
+          ))}
 
-      {/* MAP */}
-      <Tabs>
-        <STab 
-          active={tabs === 'ONE'} 
-          onClick={() => setTabs('ONE')}
-        >
-          Tab1
-        </STab>
-        <STab 
-          active={tabs === 'TWO'} 
-          onClick={() => setTabs('TWO')}
-        >
-          Tab2
-        </STab>
-        <STab 
-          active={tabs === 'THREE'} 
-          onClick={() => setTabs('THREE')}
-        >
-          Tab3
-        </STab>
-      </Tabs>
+          {/* <STab
+            active={tab === 'ONE'}
+            onClick={() => setTab('ONE')}
+          >Tab1</STab> */}
+        </Tabs>
+      </Top>
 
-      <p>Tab menu {tabs}</p>
+      <Text>Tab menu {tab}</Text>
     </Container>
   );
 };
