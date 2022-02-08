@@ -94,6 +94,7 @@ const Title = styled.h1`
 
 const Toggle = () => {
   const [onToggle, setOnToggle] = useState(false);
+  const text = onToggle ? 'ON' : 'OFF';
 
   const onChange = () => setOnToggle(prev => !prev);
   
@@ -106,7 +107,7 @@ const Toggle = () => {
           <span className="onoff-switch"></span>
         </label>
 
-        <p>Toggle Switch {!onToggle ? 'OFF' : 'ON'}</p>
+        <p>Toggle Switch {text}</p>
       </div>
     </Container>
   );
