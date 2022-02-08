@@ -8,17 +8,23 @@ const Container = styled.div`
   width: 800px;
   height: 350px;
   border-radius: 10px;
-  border: 3px solid #e9ecef;
   position: relative;
   box-sizing: border-box;
   padding: 10px;
   position: relative;
   margin-bottom: 100px;
-  padding-top: 65px;
+  box-shadow: 2px 2px 20px lightgray;
+`;
+const SearchContainer = styled.div`
+  display: flex;
+  width: 100%;
+  border: 1px solid lightgray;
+  margin-top: 135px;
+  border-radius: ${props => props.isSearching ? '15px 15px 0 0' : '15px'}
 `;
 const Input = styled.input`
   /* 검색 중이면 밑에있는 테두리가 없어진다  */
-  width: 770px;
+  width: 100%;
   padding: 15px;
   outline: none;
   border: 0;
@@ -26,18 +32,23 @@ const Input = styled.input`
   /* transition: border-radius 0.1s ease-in-out; */
   border-radius: 15px;
   font-size: 1rem;
+  &:focus {
+    box-shadow: ${props => !props.isSearching && '0 5px 10px lightgray'}
+  }
 `;
-const Btn = styled.button`
+const CancelBtn = styled.button`
   position: absolute;
   right: 20px;
   border: 0;
   background-color: transparent;
   cursor: pointer;
-  padding: 15px;
-`;
-const Result = styled.ul`
+  padding: 15px 10px;
+  font-weight: bold;
   font-size: 1rem;
-  width: 774px;
+  `;
+  const Result = styled.ul`
+  font-size: 1rem;
+  width: 100%;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -47,12 +58,23 @@ const Result = styled.ul`
   transition: all 0.1s ease-in-out;
   overflow: auto;
   padding: 5px 0 5px 0;
+  box-shadow: 0 5px 10px lightgray;
 `;
 const Item = styled.li`
   cursor: pointer;
   user-select: none;
   padding: 5px 15px;
+  &:hover {
+    background-color: #f3f0ff;
+  }
 `
+const Title = styled.h1`
+  margin: 0;
+  font-size: 1.4rem;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+`;
 
 const keywordArr = ['고구마', 'apple', 'banana', 'baby', 'codestates', 'css', 'svelte',
   'donut', 'element', 'fruit', 'git', 'hello', 'react', 'vue', 'javascript', 'html'];
@@ -70,22 +92,16 @@ const AutoComplete = () => {
 
   return (
     <Container>
-      <h1>Autocomplete</h1>
+      <Title>Autocomplete</Title>
 
-      <div
-        style={{
-          display: 'flex', width: '100%',
-          border: '1px solid lightgray',
-          borderRadius: isSearching ?  '15px 15px 0 0' : '15px'
-        }}
-        >
+      <SearchContainer isSearching={isSearching}>
         <Input
           isSearching={isSearching}
           onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}
         />
-        <Btn onClick={() => setSearchInput('')}>x</Btn>
-      </div>
+        <CancelBtn onClick={() => setSearchInput('')}>x</CancelBtn>
+      </SearchContainer>
 
       {isSearching &&
         <Result>
