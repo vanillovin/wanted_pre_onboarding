@@ -7,15 +7,16 @@ const Container = styled.div`
   height: 350px;
   position: relative;
   border-radius: 10px;
-  border: 3px solid #e9ecef;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 10px;
   margin-bottom: 100px;
-  `;
+  box-shadow: 2px 2px 20px lightgray;
+`;
 const SModal = styled.div`
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,9 +26,16 @@ const SModal = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  transition: opacity 0.2s ease-in-out;
   opacity: ${props => props.active ? 1 : 0};
   z-index: ${props => props.active ? 10 : -5};
+  transition: all 0.2s ease-in-out;
+`;
+const Title = styled.h1`
+  margin: 0;
+  font-size: 1.4rem;
+  position: absolute;
+  top: 5px;
+  left: 5px;
 `;
 const ModalBtn = styled.button`
   cursor: pointer;
@@ -36,7 +44,11 @@ const ModalBtn = styled.button`
   border-radius: 40px;
   background-color: #6741d9;
   padding: 20px 25px;
-  `;
+  &:hover {
+    background-color: #9775fa;
+  }
+  transition: background-color 0.2s ease-in-out;
+`;
 const ModalMsg = styled.div`
   display: flex;
   align-items: center;
@@ -49,18 +61,14 @@ const ModalMsg = styled.div`
 
 const Modal = () => {
   const [isModalOpen , setIsModalOpen] = useState(false);
-
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <Container>
+      <Title>Modal</Title>
       {!isModalOpen &&
-        <>
-          <h1>Modal</h1>
-          <ModalBtn onClick={handleOpenModal}>Open Modal</ModalBtn>
-        </>
-      }
+        <ModalBtn onClick={handleOpenModal}>Open Modal</ModalBtn>}
 
       <SModal active={isModalOpen}>
         <ModalMsg>
