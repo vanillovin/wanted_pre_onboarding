@@ -24,84 +24,69 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-  label {
-    height: 50px;
-  }
+`;
+const Flex = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
   input {
+    width: 150px;
+    height: 25px;
     border: 1px solid black;
-    padding: 5px 10px;
-    margin: 0 0 10px 10px;
+    margin-left: 10px;
     &:focus {
       border: #845ef7;
-      padding: 8px 13px;
-      outline: 1px solid #845ef7;
+      outline: 2px solid #845ef7;
     }
   }
+  & > div:last-child { 
+    border: 1px solid lightgray;
+    width: 150px;
+    height: 25px;
+    text-align: center;
+    margin-left: 10px;
+  }
+
 `;
 
+const Input = ({ name, defaultValue, type, setDisplays }) => {
+  const [input, setInput] = useState(defaultValue);
+  const [isEditable, setIsEditable] = useState(false);
+  const handleDoubleClick = () => setIsEditable(true);
+  const handleBlur = () => {
+    setIsEditable(false);
+    setDisplays(input);
+  };
+  return (
+    <Flex>
+      <div>{name}</div>
+      {isEditable ? (
+        <input
+          type={type}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onBlur={handleBlur}
+        />
+      ) : (
+        <div onDoubleClick={handleDoubleClick}>
+          {input}
+        </div>
+      )}
+    </Flex>
+  )
+};
 
 const ClickToEdit = () => {
-  // react 에서는 ref를 안 쓰는 것이 좋음.
-  const [inputs, setInputs] = useState({
-    nameInpu: '',
-    ageInput: ''
-  });
-  const {nameInput, ageInput} = inputs;
-  // name, age, display
-  const [displays, setDisplays] = useState({
-    name: '',
-    age: ''
-  });
-  const { name, age } = displays;
-  
-
-  // input에 입력하는 동안에는 화면에 표시되는 name, age가 바뀌지 않고
-  // onBlur일 경우에만 value(ref or state)가 반영이 된다.
-
-  const handleInputChange = ({ target: { name, value } }) => {
-    setInputs(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  };
-
-  const handleBlur = () => {
-    // 이전상태에서추가삭제
-    setDisplays({
-      name: nameInput,
-      age: ageInput
-    })
-  };
- 
+  const [displayName, setDisplayName] = useState('');
+  const [displayAge, setDisplayAge] = useState('');
   return (
     <Container>
       <Title>ClickToEdit</Title>  
       <InputContainer>
-        <label>
-          이름
-          <input
-            type='text'
-            name='nameInput'
-            value={nameInput}
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-          />
-        </label>
-
-        <label>
-          나이
-          <input
-            min={0}
-            type='number'
-            name='ageInput'
-            value={ageInput}
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-          />
-        </label>
+        <Input name='이름' defaultValue='원티드' type='text' setDisplays={setDisplayName} />
+        <Input name='나이' defaultValue={10} type='number' setDisplays={setDisplayAge} />
       </InputContainer>
-      <p>이름 {name} 나이 {age}</p>
-    
+      <div>이름 {displayName} 나이 {displayAge}</div>
     </Container>
   );
 };
