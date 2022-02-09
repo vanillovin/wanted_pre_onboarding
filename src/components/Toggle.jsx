@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react/cjs/react.development';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -25,7 +24,7 @@ const Container = styled.div`
     position: relative; 
     display: inline-block; 
     width: 148px; 
-    height: 60px; 
+    height: 62px; 
   } 
   .switch-button input { 
     opacity: 0; 
@@ -42,33 +41,33 @@ const Container = styled.div`
     border-radius: 40px; 
     background-color: #ccc; 
     /* box-shadow: inset 1px 5px 1px #999; */
-    -webkit-transition: .4s; 
-    transition: .4s; 
+    -webkit-transition: .3s; 
+    transition: .3s; 
   } 
   .onoff-switch:after { 
-    z-index: 1;
     content: ""; 
     position: absolute; 
     width: 25px;
     height: 50px; 
     left: 7px; 
-    top: 5px;
-    background-color: #7662b4;
-    -webkit-transition: .5s; 
-    transition: .5s;
-    border-radius: 40px 0 0 40px; 
+    top: 6px;
+    background-color: #a191cf;
+    -webkit-transition: all .3s linear; 
+    transition: all .3s linear;
+    border-radius: 50px 0 0 50px; 
+    -webkit-transform: translateX(1px); 
   } 
   .onoff-switch:before { 
-    z-index: 2;
+    z-index: 1;
     position: absolute; 
     content: ""; 
     width: 50px; 
     height: 50px; 
     left: 7px; 
-    top: 5px; 
+    top: 6px; 
     background-color: #fff; 
-    -webkit-transition: .5s; 
-    transition: .5s; 
+    -webkit-transition: all .3s linear; 
+    transition: all .3s linear; 
     border-radius: 50%; 
   } 
   .switch-button input:checked + .onoff-switch { 
@@ -79,9 +78,9 @@ const Container = styled.div`
     width: 110px;
   }
   .switch-button input:checked + .onoff-switch:before { 
-    -webkit-transform: translateX(85px); 
-    -ms-transform: translateX(85px); 
-    transform: translateX(85px); 
+    -webkit-transform: translateX(84px); 
+    -ms-transform: translateX(84px); 
+    transform: translateX(84px); 
   }
 `;
 const Title = styled.h1`
