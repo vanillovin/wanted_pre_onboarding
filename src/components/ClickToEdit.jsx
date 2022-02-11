@@ -34,8 +34,9 @@ const Flex = styled.div`
     height: 25px;
     border: 1px solid black;
     margin-left: 10px;
+    text-align: center;
+    padding: 5px;
     &:focus {
-      border: #845ef7;
       outline: 2px solid #845ef7;
     }
   }
@@ -43,8 +44,8 @@ const Flex = styled.div`
     border: 1px solid lightgray;
     width: 150px;
     height: 25px;
-    text-align: center;
     margin-left: 10px;
+    text-align: center;
   }
 
 `;
@@ -52,23 +53,29 @@ const Flex = styled.div`
 const Input = ({ name, defaultValue, type, setDisplays }) => {
   const [input, setInput] = useState(defaultValue);
   const [isEditable, setIsEditable] = useState(false);
-  const handleDoubleClick = () => setIsEditable(true);
+
+  const handleSelect = e => e.target.select();
+
+  const handleClick = () => setIsEditable(true);
+
   const handleBlur = () => {
     setIsEditable(false);
     setDisplays(input);
   };
+
   return (
     <Flex>
       <div>{name}</div>
       {isEditable ? (
         <input
+          onClick={handleSelect}
           type={type}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onBlur={handleBlur}
         />
       ) : (
-        <div onDoubleClick={handleDoubleClick}>
+        <div onClick={handleClick}>
           {input}
         </div>
       )}
