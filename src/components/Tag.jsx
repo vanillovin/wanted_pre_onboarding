@@ -35,7 +35,7 @@ const TagContainer = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid lightgray;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   border-radius: 10px;
   /* 자기안에focus된게있으면 */
   &:focus-within {
@@ -69,7 +69,7 @@ const Item = styled.div`
   align-items: center;
   border-radius: 8px;
   background-color: #6741d9;
-  margin: 0 6px 4px 0;
+  margin: 0 6px 10px 0;
   box-shadow: 2px 2px 5px lightgray;
 `;
 const DeleteBtn = styled.button`
