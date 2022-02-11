@@ -52,8 +52,8 @@ const Container = styled.div`
     left: 7px; 
     top: 6px;
     background-color: #a191cf;
-    -webkit-transition: all .3s linear; 
-    transition: all .3s linear;
+    -webkit-transition: all .3s ease-in-out; 
+    transition: all .3s ease-in-out;
     border-radius: 50px 0 0 50px; 
     -webkit-transform: translateX(1px); 
   } 
@@ -66,8 +66,8 @@ const Container = styled.div`
     left: 7px; 
     top: 6px; 
     background-color: #fff; 
-    -webkit-transition: all .3s linear; 
-    transition: all .3s linear; 
+    -webkit-transition: all .3s ease-in-out; 
+    transition: all .3s ease-in-out; 
     border-radius: 50%; 
   } 
   .switch-button input:checked + .onoff-switch { 
